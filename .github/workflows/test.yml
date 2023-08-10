@@ -17,9 +17,6 @@ jobs:
     
       - name: Push
         uses: s0/git-publish-subdir-action@develop
-
-      - name: Show files
-        run: ls
         env:
           REPO: self
           BRANCH: production # The branch name where you want to push the assets
