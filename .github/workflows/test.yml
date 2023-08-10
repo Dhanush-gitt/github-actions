@@ -18,5 +18,6 @@ jobs:
 
       - name: Run Application
         run: |
+          npm init
           npm i
           node app.js
