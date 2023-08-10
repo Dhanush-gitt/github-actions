@@ -19,6 +19,7 @@ jobs:
           node-version: '16'  # Adjust as needed
       
       - name: Install Git
+        run: apt update -y && apt install sudo -y
         run: sudo apt-get update && sudo apt-get install -y git
 
       - name: Commit and Push Changes
