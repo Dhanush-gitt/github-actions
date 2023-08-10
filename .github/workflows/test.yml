@@ -17,4 +17,6 @@ jobs:
           node-version: 16.18.0
 
       - name: Run Application
-        run: node app.js
+        run: |
+        npm i
+        node app.js
