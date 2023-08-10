@@ -1,25 +1,26 @@
-# .github/workflows/publish.yml
-name: Generate a build and push to another branch
+name: Deploy Theme
 
 on:
   push:
     branches:
-      - master # Remove this line if your primary branch is "main"
-      - main # Remove this line if your primary branch is "master"
+      - master
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
-    name: Build and Push
     steps:
-      - name: git-checkout
-        uses: actions/checkout@v2
-    
-      - name: Push
-        uses: s0/git-publish-subdir-action@develop
-        env:
-          REPO: self
-          BRANCH: production # The branch name where you want to push the assets
-          FOLDER: ./
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub will automatically add this - you don't need to bother getting a token
-          MESSAGE: "Build: ({sha}) {msg}" # The commit message
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2.3.1
+
+      - name: Install and Build 🔧
+        run: |
+          npm install
+          npm run build
+          rm .gitignore
+          mv .gitignore.build .gitignore
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          branch: dist # The branch the action should deploy to.
+          folder: shopify # The folder the action should deploy.
