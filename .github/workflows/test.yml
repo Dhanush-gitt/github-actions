@@ -18,12 +18,6 @@ jobs:
         with:
           node-version: '16'  # Adjust as needed
 
-      - name: Install Dependencies
-        run: npm install
-
-      - name: Build
-        run: npm run build  # Replace with your build command
-
       - name: Commit and Push Changes
         run: |
           git config user.name "GitHub Actions"
